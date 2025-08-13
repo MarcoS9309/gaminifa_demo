@@ -6,21 +6,115 @@
   <title>Artery Dash</title>
   <style>
     /* --- Reset mínimo y layout --- */
-    html, body { height: 100%; margin: 0; background:#0a0a0a; }
+    html, body { height: 100%; margin: 0; background: linear-gradient(135deg, #0a0a0a, #1a0515); }
     body { display: grid; place-items: center; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif; }
-    .frame { position: relative; width: min(96vw, 540px); aspect-ratio: 9/16; box-shadow: 0 10px 30px rgba(0,0,0,.5); border-radius: 16px; overflow: hidden; background: #1a0f1a; }
-    canvas { width: 100%; height: 100%; image-rendering: pixelated; display:block; }
-    .hud { position:absolute; inset:0; pointer-events:none; color:#ffe9f6; text-shadow: 0 2px 0 #7a1f5a; }
-    .hud .row { display:flex; justify-content:space-between; padding:.6rem .8rem; font-weight:700; }
-    .btns { position:absolute; left:50%; bottom:1rem; translate:-50% 0; display:flex; gap:.5rem; pointer-events:auto; }
-    button { background:#ff3d82; color:#fff; border:none; padding:.6rem .9rem; border-radius:10px; font-weight:700; cursor:pointer; box-shadow:0 6px 0 #7a1f5a; transition: transform .05s; }
-    button:active { transform: translateY(2px); box-shadow:0 4px 0 #7a1f5a; }
-    .mute { background:#7a1f5a; }
-    .toast { position:absolute; top:50%; left:50%; translate:-50% -50%; background:#2a0f28cc; border:2px solid #ff9bc0; color:#ffe9f6; padding:1rem 1.2rem; border-radius:12px; max-width:85%; text-align:center; pointer-events:auto; }
-    .toast h2 { margin:.2rem 0 .4rem; font-size:1.1rem; }
-    .toast p { margin:.3rem 0 .6rem; }
-    .kbd { background:#35142f; border:1px solid #ff9bc0; padding:.05rem .35rem; border-radius:6px; font-weight:800; }
-    .credits { position:absolute; bottom:.35rem; right:.6rem; font-size:.7rem; opacity:.8; }
+    .frame { 
+      position: relative; 
+      width: min(96vw, 540px); 
+      aspect-ratio: 9/16; 
+      box-shadow: 0 20px 60px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.1); 
+      border-radius: 20px; 
+      overflow: hidden; 
+      background: #1a0f1a;
+      border: 2px solid rgba(255, 155, 192, 0.3);
+    }
+    canvas { 
+      width: 100%; 
+      height: 100%; 
+      image-rendering: pixelated; 
+      image-rendering: crisp-edges;
+      display: block; 
+    }
+    .hud { 
+      position: absolute; 
+      inset: 0; 
+      pointer-events: none; 
+      color: #ffe9f6; 
+      text-shadow: 0 2px 4px rgba(122, 31, 90, 0.8), 0 0 10px rgba(255, 155, 192, 0.3); 
+    }
+    .hud .row { 
+      display: flex; 
+      justify-content: space-between; 
+      padding: .8rem 1rem; 
+      font-weight: 700; 
+      font-size: 1rem;
+    }
+    .btns { 
+      position: absolute; 
+      left: 50%; 
+      bottom: 1.2rem; 
+      translate: -50% 0; 
+      display: flex; 
+      gap: .6rem; 
+      pointer-events: auto; 
+    }
+    button { 
+      background: linear-gradient(135deg, #ff3d82, #e6306f);
+      color: #fff; 
+      border: none; 
+      padding: .8rem 1.1rem; 
+      border-radius: 12px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      box-shadow: 0 8px 0 #7a1f5a, 0 8px 20px rgba(255, 61, 130, 0.3); 
+      transition: all .1s ease; 
+      font-size: 0.9rem;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #ff5599, #e6306f);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 0 #7a1f5a, 0 10px 25px rgba(255, 61, 130, 0.4);
+    }
+    button:active { 
+      transform: translateY(4px); 
+      box-shadow: 0 4px 0 #7a1f5a, 0 4px 15px rgba(255, 61, 130, 0.3); 
+    }
+    .mute { 
+      background: linear-gradient(135deg, #7a1f5a, #5c1742);
+    }
+    .mute:hover {
+      background: linear-gradient(135deg, #8b2465, #5c1742);
+    }
+    .toast { 
+      position: absolute; 
+      top: 50%; 
+      left: 50%; 
+      translate: -50% -50%; 
+      background: rgba(42, 15, 40, 0.95);
+      backdrop-filter: blur(10px);
+      border: 2px solid #ff9bc0; 
+      color: #ffe9f6; 
+      padding: 1.5rem 1.5rem; 
+      border-radius: 16px; 
+      max-width: 85%; 
+      text-align: center; 
+      pointer-events: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+    .toast h2 { 
+      margin: .2rem 0 .6rem; 
+      font-size: 1.3rem; 
+      text-shadow: 0 0 10px rgba(255, 155, 192, 0.5);
+    }
+    .toast p { 
+      margin: .4rem 0 .8rem; 
+      line-height: 1.4;
+    }
+    .kbd { 
+      background: #35142f; 
+      border: 1px solid #ff9bc0; 
+      padding: .1rem .4rem; 
+      border-radius: 6px; 
+      font-weight: 800; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .credits { 
+      position: absolute; 
+      bottom: .4rem; 
+      right: .8rem; 
+      font-size: .7rem; 
+      opacity: .8; 
+    }
   </style>
 </head>
 <body>
@@ -42,11 +136,23 @@
   </div>
 
   <script>
-  // ============================
-  // Artery Dash — Flappy-like
-  // Autor: Tú + ChatGPT
-  // Licencia: MIT (puedes ajustarla)
-  // ============================
+  /*
+   * Artery Dash Enhanced Edition - Educational Flappy Bird-style Game
+   * Copyright (c) 2025 Marco Vinicio (MarcoS9309)
+   * 
+   * A pixel art medical-themed game set inside a blood vessel.
+   * Control a red blood cell navigating through arteries while avoiding
+   * cholesterol plaques, white blood cells, and bacteria.
+   * 
+   * Features:
+   * - Advanced particle system
+   * - Optimized rendering with cached gradients
+   * - Smooth animations and visual effects
+   * - Educational medical content
+   * 
+   * License: MIT (see LICENSE file)
+   * Repository: https://github.com/MarcoS9309/Arltery_dash-demo
+   */
   (function(){
     const cvs = document.getElementById('game');
     const ctx = cvs.getContext('2d');
@@ -68,6 +174,43 @@
     let score = 0;
     let best = Number(localStorage.getItem('artery-best')||0);
     bestEl.textContent = best;
+
+    // Cache de gradientes para optimización
+    let bgGradient, arteryGradient;
+    let particleSystem = [];
+    
+    // Performance monitoring
+    let frameCount = 0;
+    let lastFpsUpdate = 0;
+    let currentFps = 60;
+
+    // Inicializar gradientes una sola vez
+    function initGradients() {
+      bgGradient = ctx.createLinearGradient(0,0,0,world.h);
+      bgGradient.addColorStop(0, '#3b0b2e');
+      bgGradient.addColorStop(0.5, '#4d0e3d');
+      bgGradient.addColorStop(1, '#300a24');
+      
+      arteryGradient = ctx.createLinearGradient(0,0,0,world.h);
+      arteryGradient.addColorStop(0, '#8b1e5a');
+      arteryGradient.addColorStop(0.5, '#a0275f');
+      arteryGradient.addColorStop(1, '#8b1e5a');
+    }
+    
+    // Monitor FPS for performance optimization
+    function updateFPS(timestamp) {
+      frameCount++;
+      if (timestamp - lastFpsUpdate >= 1000) {
+        currentFps = Math.round((frameCount * 1000) / (timestamp - lastFpsUpdate));
+        frameCount = 0;
+        lastFpsUpdate = timestamp;
+        
+        // Adjust particle system based on performance
+        if (currentFps < 45 && particleSystem.length > 50) {
+          particleSystem.splice(0, Math.floor(particleSystem.length * 0.3));
+        }
+      }
+    }
 
     let muted = false; 
     let paused = false;
@@ -122,46 +265,81 @@
       o.stop(audioCtx.currentTime + time);
     }
 
-    // Dibujo: fondo de arteria (paredes pulsátiles)
+    // Dibujo: fondo de arteria (paredes pulsátiles) - OPTIMIZADO
     function drawBackground(){
-      // Gradiente base
-      const g = ctx.createLinearGradient(0,0,0,world.h);
-      g.addColorStop(0, '#3b0b2e');
-      g.addColorStop(0.5, '#4d0e3d');
-      g.addColorStop(1, '#300a24');
-      ctx.fillStyle = g; ctx.fillRect(0,0,world.w,world.h);
+      // Usar gradiente cacheado
+      ctx.fillStyle = bgGradient; 
+      ctx.fillRect(0,0,world.w,world.h);
 
-      // Paredes y endotelio con sinusoide
+      // Paredes y endotelio con sinusoide mejorada
       world.arteryPhase += 0.02;
-      ctx.fillStyle = '#8b1e5a';
-      const amp = 6*PX;
+      ctx.fillStyle = arteryGradient;
+      const amp = 8*PX;
       const yTop = 60 + Math.sin(world.arteryPhase)*amp;
       const yBot = world.h - 60 + Math.cos(world.arteryPhase*0.9)*amp;
+      
+      // Paredes con gradiente
       ctx.fillRect(0,0,world.w,yTop);
       ctx.fillRect(0,yBot,world.w,world.h-yBot);
 
-      // Detalle: estrías
-      ctx.globalAlpha = 0.15;
+      // Detalle: estrías con patrón más suave
+      ctx.globalAlpha = 0.2;
       ctx.fillStyle = '#ff9bc0';
-      for(let x=0; x<world.w; x+= 16*PX){
-        ctx.fillRect(x, yTop, 2, world.h - yTop - (world.h - yBot));
+      for(let x=0; x<world.w; x+= 20*PX){
+        const striaHeight = world.h - yTop - (world.h - yBot);
+        ctx.fillRect(x, yTop, 3, striaHeight);
+        ctx.fillRect(x+10*PX, yTop, 1, striaHeight);
+      }
+      
+      // Añadir puntos de luz flotantes
+      ctx.globalAlpha = 0.15;
+      for(let i=0; i<8; i++){
+        const x = (world.arteryPhase*30 + i*45) % world.w;
+        const y = yTop + 40 + Math.sin(world.arteryPhase + i)*20;
+        ctx.beginPath();
+        ctx.arc(x, y, 2, 0, Math.PI*2);
+        ctx.fill();
       }
       ctx.globalAlpha = 1;
     }
 
-    // Dibujo: glóbulo rojo (disco biconcavo estilizado pixel)
+    // Dibujo: glóbulo rojo (disco biconcavo estilizado pixel) - MEJORADO
     function drawPlayer(p){
       ctx.save();
       ctx.translate(p.x, p.y);
       ctx.rotate(p.spin);
-      // aro externo
-      ctx.fillStyle = '#e43f5a';
+      
+      // Sombra sutil
+      ctx.globalAlpha = 0.3;
+      ctx.fillStyle = '#2a0f28';
+      roundedRect(-p.r+2, -p.r*0.6+2, p.r*2, p.r*1.2, 6);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      
+      // Gradiente para el glóbulo
+      const playerGradient = ctx.createRadialGradient(-p.r*0.3, -p.r*0.3, 0, 0, 0, p.r*1.2);
+      playerGradient.addColorStop(0, '#ff5577');
+      playerGradient.addColorStop(0.7, '#e43f5a');
+      playerGradient.addColorStop(1, '#bb2c49');
+      
+      // aro externo con gradiente
+      ctx.fillStyle = playerGradient;
       roundedRect(-p.r, -p.r*0.6, p.r*2, p.r*1.2, 6);
       ctx.fill();
-      // centro más oscuro
-      ctx.fillStyle = '#bb2c49';
+      
+      // centro más oscuro con brillo
+      ctx.fillStyle = '#aa1f3d';
       roundedRect(-p.r*0.6, -p.r*0.36, p.r*1.2, p.r*0.72, 5);
       ctx.fill();
+      
+      // Punto de brillo
+      ctx.fillStyle = '#ff8899';
+      ctx.globalAlpha = 0.8;
+      ctx.beginPath();
+      ctx.arc(-p.r*0.4, -p.r*0.2, 3, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      
       ctx.restore();
     }
 
@@ -179,69 +357,239 @@
       ctx.closePath();
     }
 
-    // Dibujo: placas (pareja superior/inferior)
+    // Sistema de partículas mejorado
+    function createParticle(x, y, type) {
+      return {
+        x, y,
+        vx: (Math.random() - 0.5) * 4,
+        vy: (Math.random() - 0.5) * 4,
+        life: 60,
+        maxLife: 60,
+        type, // 'bonus', 'collision', 'trail'
+        color: type === 'bonus' ? '#74d0ff' : type === 'collision' ? '#ff3d82' : '#ffaa66'
+      };
+    }
+
+    function updateParticles() {
+      // Optimización: Limitar número máximo de partículas
+      const maxParticles = currentFps > 50 ? 150 : 75;
+      
+      for(let i = particleSystem.length - 1; i >= 0; i--) {
+        const p = particleSystem[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life--;
+        p.vy += 0.1; // gravedad ligera
+        
+        if(p.life <= 0) {
+          particleSystem.splice(i, 1);
+        }
+      }
+      
+      // Eliminar partículas excesivas si es necesario
+      if(particleSystem.length > maxParticles) {
+        particleSystem.splice(0, particleSystem.length - maxParticles);
+      }
+    }
+
+    function drawParticles() {
+      for(const p of particleSystem) {
+        const alpha = p.life / p.maxLife;
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2 * alpha + 1, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // Dibujo: placas (pareja superior/inferior) - MEJORADO
     function drawPlaque(pl){
-      ctx.fillStyle = '#d6b35c'; // color ateroma
+      // Gradiente para las placas
+      const plaqueGradient = ctx.createLinearGradient(pl.x, 0, pl.x + pl.w, 0);
+      plaqueGradient.addColorStop(0, '#d6b35c');
+      plaqueGradient.addColorStop(0.5, '#f4d478');
+      plaqueGradient.addColorStop(1, '#c49a4a');
+      
+      ctx.fillStyle = plaqueGradient;
+      
       // superior
       ctx.fillRect(pl.x, 0, pl.w, pl.gapY - pl.gap/2);
       // inferior
       ctx.fillRect(pl.x, pl.gapY + pl.gap/2, pl.w, world.h - (pl.gapY + pl.gap/2));
 
-      // textura granulada
-      ctx.globalAlpha = 0.3;
+      // textura granulada mejorada
+      ctx.globalAlpha = 0.4;
       ctx.fillStyle = '#b8923d';
-      for(let y=0; y<world.h; y+= 10){
-        ctx.fillRect(pl.x + ((y*13)%pl.w), y, 2, 2);
+      for(let y=0; y<world.h; y+= 8){
+        for(let x=0; x<pl.w; x+= 8){
+          if(Math.random() > 0.7) {
+            ctx.fillRect(pl.x + x, y, 2, 2);
+          }
+        }
       }
+      
+      // Bordes con sombra
+      ctx.globalAlpha = 0.6;
+      ctx.fillStyle = '#8b7239';
+      ctx.fillRect(pl.x + pl.w - 2, 0, 2, pl.gapY - pl.gap/2);
+      ctx.fillRect(pl.x + pl.w - 2, pl.gapY + pl.gap/2, 2, world.h - (pl.gapY + pl.gap/2));
+      
       ctx.globalAlpha = 1;
     }
 
-    // Dibujo: leucocito (círculo blanco con núcleo)
+    // Dibujo: leucocito (círculo blanco con núcleo) - MEJORADO
     function drawLeukocyte(h){
       ctx.save();
       ctx.translate(h.x, h.y);
-      ctx.fillStyle = '#f0f0f0';
+      
+      // Sombra
+      ctx.globalAlpha = 0.3;
+      ctx.fillStyle = '#2a0f28';
+      ctx.beginPath(); 
+      ctx.arc(2, 2, h.r, 0, Math.PI*2); 
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      
+      // Gradiente del leucocito
+      const wbcGradient = ctx.createRadialGradient(-h.r*0.3, -h.r*0.3, 0, 0, 0, h.r);
+      wbcGradient.addColorStop(0, '#ffffff');
+      wbcGradient.addColorStop(0.8, '#f0f0f0');
+      wbcGradient.addColorStop(1, '#d0d0d0');
+      
+      ctx.fillStyle = wbcGradient;
       ctx.beginPath(); ctx.arc(0,0,h.r,0,Math.PI*2); ctx.fill();
-      ctx.fillStyle = '#cbd3ff';
+      
+      // Núcleo con gradiente
+      const nucleusGradient = ctx.createRadialGradient(-h.r*0.1, -h.r*0.1, 0, 0, 0, h.r*0.6);
+      nucleusGradient.addColorStop(0, '#e6edff');
+      nucleusGradient.addColorStop(1, '#cbd3ff');
+      
+      ctx.fillStyle = nucleusGradient;
       ctx.beginPath(); ctx.arc(-h.r*0.2,0,h.r*0.55,0,Math.PI*2); ctx.fill();
+      
+      // Brillo
+      ctx.fillStyle = '#ffffff';
+      ctx.globalAlpha = 0.6;
+      ctx.beginPath();
+      ctx.arc(-h.r*0.4, -h.r*0.4, h.r*0.2, 0, Math.PI*2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      
       ctx.restore();
     }
 
-    // Dibujo: bacteria (bastón con cilios)
+    // Dibujo: bacteria (bastón con cilios) - MEJORADO
     function drawBacteria(h){
       ctx.save();
       ctx.translate(h.x, h.y); ctx.rotate(h.a);
-      ctx.fillStyle = '#4ee07d';
+      
+      // Sombra
+      ctx.globalAlpha = 0.3;
+      ctx.fillStyle = '#2a0f28';
+      roundedRect(-h.len/2+1, -h.th/2+1, h.len, h.th, 4);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      
+      // Gradiente de la bacteria
+      const bacGradient = ctx.createLinearGradient(0, -h.th/2, 0, h.th/2);
+      bacGradient.addColorStop(0, '#66ff99');
+      bacGradient.addColorStop(0.5, '#4ee07d');
+      bacGradient.addColorStop(1, '#33cc66');
+      
+      ctx.fillStyle = bacGradient;
       roundedRect(-h.len/2, -h.th/2, h.len, h.th, 4);
       ctx.fill();
-      // cilios
-      ctx.strokeStyle = '#4ee07d'; ctx.lineWidth = 2;
-      for(let i=-h.len/2; i<h.len/2; i+= 8){
+      
+      // Línea central
+      ctx.fillStyle = '#2d8f4f';
+      ctx.fillRect(-h.len/2, -1, h.len, 2);
+      
+      // cilios mejorados
+      ctx.strokeStyle = '#4ee07d'; 
+      ctx.lineWidth = 2;
+      ctx.globalAlpha = 0.8;
+      for(let i=-h.len/2; i<h.len/2; i+= 6){
+        const waveOffset = Math.sin(Date.now() * 0.01 + i * 0.2) * 2;
         ctx.beginPath();
         ctx.moveTo(i, -h.th/2);
-        ctx.lineTo(i, -h.th/2 - 6);
-        ctx.moveTo(i,  h.th/2);
-        ctx.lineTo(i,  h.th/2 + 6);
+        ctx.lineTo(i + waveOffset, -h.th/2 - 8);
+        ctx.moveTo(i, h.th/2);
+        ctx.lineTo(i + waveOffset, h.th/2 + 8);
         ctx.stroke();
       }
+      ctx.globalAlpha = 1;
       ctx.restore();
     }
 
-    // Dibujo: bonus (oxígeno y vitamina)
+    // Dibujo: bonus (oxígeno y vitamina) - MEJORADO
     function drawBonus(b){
+      const pulseScale = 1 + Math.sin(Date.now() * 0.01) * 0.1; // pulsación suave
+      
       if(b.kind === 'O2'){
-        ctx.save(); ctx.translate(b.x, b.y);
-        ctx.fillStyle = '#74d0ff';
+        ctx.save(); 
+        ctx.translate(b.x, b.y);
+        ctx.scale(pulseScale, pulseScale);
+        
+        // Resplandor
+        const glowGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, b.r * 2);
+        glowGradient.addColorStop(0, 'rgba(116, 208, 255, 0.4)');
+        glowGradient.addColorStop(1, 'rgba(116, 208, 255, 0)');
+        ctx.fillStyle = glowGradient;
+        ctx.beginPath(); ctx.arc(0,0, b.r * 2, 0, Math.PI*2); ctx.fill();
+        
+        // Gradiente del bonus
+        const o2Gradient = ctx.createRadialGradient(-b.r*0.3, -b.r*0.3, 0, 0, 0, b.r);
+        o2Gradient.addColorStop(0, '#a8e6ff');
+        o2Gradient.addColorStop(0.7, '#74d0ff');
+        o2Gradient.addColorStop(1, '#4db8ff');
+        
+        ctx.fillStyle = o2Gradient;
         ctx.beginPath(); ctx.arc(0,0, b.r, 0, Math.PI*2); ctx.fill();
-        ctx.fillStyle = '#e8f8ff'; ctx.font = 'bold 12px monospace'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        
+        // Texto con sombra
+        ctx.fillStyle = '#003366';
+        ctx.font = 'bold 12px monospace'; 
+        ctx.textAlign = 'center'; 
+        ctx.textBaseline = 'middle';
+        ctx.fillText('O₂', 1, 1);
+        
+        ctx.fillStyle = '#ffffff'; 
         ctx.fillText('O₂', 0, 0);
         ctx.restore();
       } else {
-        ctx.save(); ctx.translate(b.x, b.y);
-        ctx.fillStyle = '#ffcc00';
+        ctx.save(); 
+        ctx.translate(b.x, b.y);
+        ctx.scale(pulseScale, pulseScale);
+        
+        // Resplandor
+        const glowGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, b.r * 2);
+        glowGradient.addColorStop(0, 'rgba(255, 204, 0, 0.4)');
+        glowGradient.addColorStop(1, 'rgba(255, 204, 0, 0)');
+        ctx.fillStyle = glowGradient;
+        ctx.fillRect(-b.r*2, -b.r*2.4, b.r*4, b.r*4.8);
+        
+        // Gradiente de la vitamina
+        const vitGradient = ctx.createLinearGradient(0, -b.r*1.2, 0, b.r*1.2);
+        vitGradient.addColorStop(0, '#ffdd44');
+        vitGradient.addColorStop(0.5, '#ffcc00');
+        vitGradient.addColorStop(1, '#cc9900');
+        
+        ctx.fillStyle = vitGradient;
         roundedRect(-b.r, -b.r*1.2, b.r*2, b.r*2.4, 6);
         ctx.fill();
-        ctx.fillStyle = '#833500'; ctx.fillRect(-2, -b.r*1.2, 4, b.r*2.4);
+        
+        // Etiqueta mejorada
+        ctx.fillStyle = '#4d2600'; 
+        ctx.fillRect(-3, -b.r*1.2, 6, b.r*2.4);
+        
+        // Brillo
+        ctx.fillStyle = '#ffffff';
+        ctx.globalAlpha = 0.3;
+        ctx.fillRect(-b.r*0.8, -b.r*1.0, b.r*1.6, b.r*0.4);
+        ctx.globalAlpha = 1;
+        
         ctx.restore();
       }
     }
@@ -365,11 +713,14 @@
     // Soporte táctil
     document.getElementById('frame').addEventListener('touchstart', (e)=>{ if(state==='menu'){ startGame(); } else { flap(); } }, {passive:true});
 
-    // Bucle principal: dt fijo para consistencia
+    // Bucle principal: dt fijo para consistencia + monitoreo de FPS
     function loop(now){
       if(state==='menu'){ drawBackground(); drawPlayer(player); return; }
       if(paused){ drawBackground(); drawScene(); drawPaused(); return; }
+      
       now = now || performance.now();
+      updateFPS(now); // Monitor performance
+      
       acc += now - t0; t0 = now;
       while(acc >= fixedDt){ update(); acc -= fixedDt; }
       drawBackground(); drawScene();
@@ -378,11 +729,34 @@
 
     function update(){
       if(state!=='play') return;
-      // física del jugador
-      player.vy += world.gravity; player.vy = clamp(player.vy, -10, 10); player.y += player.vy; player.spin += 0.06; player.spin = clamp(player.spin, -0.3, 0.9);
+      
+      // física del jugador con interpolación suave
+      player.vy += world.gravity; 
+      player.vy = clamp(player.vy, -10, 10); 
+      player.y += player.vy; 
+      player.spin += 0.04; // reducido para suavidad
+      player.spin = clamp(player.spin, -0.3, 0.6);
+
+      // Agregar estela del jugador
+      if(Math.random() < 0.3) {
+        particleSystem.push(createParticle(
+          player.x - player.r, 
+          player.y + (Math.random() - 0.5) * player.r, 
+          'trail'
+        ));
+      }
 
       // límites superior/inferior (pared arterial)
-      if(player.y - player.r < 60 || player.y + player.r > world.h - 60){ return gameOver(); }
+      if(player.y - player.r < 60 || player.y + player.r > world.h - 60){ 
+        // Partículas de colisión
+        for(let i = 0; i < 8; i++) {
+          particleSystem.push(createParticle(player.x, player.y, 'collision'));
+        }
+        return gameOver(); 
+      }
+
+      // Actualizar partículas
+      updateParticles();
 
       // spawn lógica
       if(timeToPlaque <= 0){ spawnPlaque(); timeToPlaque = 90; }
@@ -394,10 +768,21 @@
       for(let i=plaques.length-1; i>=0; i--){
         const pl = plaques[i]; pl.x -= world.speed*2.2;
         // pasar hueco = +1 punto
-        if(!pl.passed && pl.x + pl.w < player.x - player.r){ pl.passed = true; score++; scoreEl.textContent = score; beep(520,.05,'square',.02); }
+        if(!pl.passed && pl.x + pl.w < player.x - player.r){ 
+          pl.passed = true; score++; scoreEl.textContent = score; 
+          beep(520,.05,'square',.02); 
+          // Partículas de celebración
+          for(let j = 0; j < 3; j++) {
+            particleSystem.push(createParticle(player.x, player.y, 'bonus'));
+          }
+        }
         // colisión con bordes de placa
         if(circleRectCollision(player.x, player.y, player.r, pl.x, 0, pl.w, pl.gapY - pl.gap/2) ||
            circleRectCollision(player.x, player.y, player.r, pl.x, pl.gapY + pl.gap/2, pl.w, world.h - (pl.gapY + pl.gap/2))){
+          // Partículas de colisión
+          for(let j = 0; j < 12; j++) {
+            particleSystem.push(createParticle(player.x, player.y, 'collision'));
+          }
           return gameOver();
         }
         if(pl.x + pl.w < -20){ plaques.splice(i,1); }
@@ -407,7 +792,13 @@
       for(let i=hazards.length-1; i>=0; i--){
         const h = hazards[i]; h.x += h.vx; h.y += (h.vy||0); if(h.va) h.a += h.va;
         const shape = (h.type==='wbc')? {x:h.x,y:h.y,r:h.r} : {x:h.x,y:h.y,th:h.th};
-        if(circleCircleCollision({x:player.x,y:player.y,r:player.r}, shape)) return gameOver();
+        if(circleCircleCollision({x:player.x,y:player.y,r:player.r}, shape)) {
+          // Partículas de colisión
+          for(let j = 0; j < 10; j++) {
+            particleSystem.push(createParticle(h.x, h.y, 'collision'));
+          }
+          return gameOver();
+        }
         if(h.x < -60) hazards.splice(i,1);
       }
 
@@ -415,7 +806,12 @@
       for(let i=bonuses.length-1; i>=0; i--){
         const b = bonuses[i]; b.x += b.vx;
         if(circleCircleCollision({x:player.x,y:player.y,r:player.r}, b)){
-          score += (b.kind==='O2')? 2 : 3; scoreEl.textContent = score; beep((b.kind==='O2')?780:920, .06, 'triangle', .025);
+          score += (b.kind==='O2')? 2 : 3; scoreEl.textContent = score; 
+          beep((b.kind==='O2')?780:920, .06, 'triangle', .025);
+          // Partículas de recolección
+          for(let j = 0; j < 6; j++) {
+            particleSystem.push(createParticle(b.x, b.y, 'bonus'));
+          }
           bonuses.splice(i,1); continue;
         }
         if(b.x < -40) bonuses.splice(i,1);
@@ -427,6 +823,10 @@
       for(const pl of plaques) drawPlaque(pl);
       for(const h of hazards) (h.type==='wbc'? drawLeukocyte : drawBacteria)(h);
       for(const b of bonuses) drawBonus(b);
+      
+      // Dibujar partículas antes del jugador para que aparezcan detrás
+      drawParticles();
+      
       drawPlayer(player);
     }
 
@@ -438,6 +838,7 @@
     }
 
     // Inicializar
+    initGradients(); // Inicializar gradientes cacheados
     showMenu();
     drawBackground(); drawPlayer(player);
     requestAnimationFrame(loop);
