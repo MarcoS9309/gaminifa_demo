@@ -1,5 +1,29 @@
-# 🩸 Artery Dash## 🎮 Mecánicas de juego
-- Controlas un **glóbulo rojo** que avanza por una arteria con efectos visuales mejorados.
+# 🩸 Artery Dash
+
+**Artery Dash** es un minijuego educativo estilo *Flappy Bird* con estética **pixel art** en vista lateral, ambientado dentro de un vaso sanguíneo. Fue diseñado para amenizar la espera en hospitales o consultorios, ofreciendo un toque educativo y divertido sobre el sistema cardiovascular.
+
+**Nueva versión mejorada** con efectos visuales avanzados, sistema de partículas y optimizaciones de rendimiento para una experiencia más fluida e inmersiva.
+
+![Captura del juego](./Screenshot/ChatGPT%20Image%2013%20ago%202025,%2016_11_54.png)
+
+---
+
+## 🎓 Propósito Educativo
+
+Este juego tiene como objetivo enseñar de manera divertida conceptos básicos sobre el sistema circulatorio:
+
+- **Anatomía vascular**: Visualización del interior de una arteria con sus paredes pulsátiles
+- **Componentes sanguíneos**: Interacción con glóbulos rojos, leucocitos y otros elementos
+- **Patologías cardiovasculares**: Representación lúdica de placas de colesterol y bacterias
+- **Importancia de la oxigenación**: Recolección de oxígeno y vitaminas como elementos beneficiosos
+
+El juego simula el viaje de un glóbulo rojo a través del sistema circulatorio, enfrentando diferentes obstáculos que representan condiciones médicas reales, mientras recolecta elementos esenciales para la salud.
+
+---
+
+## 🎮 Mecánicas de Juego
+
+- Controla un **glóbulo rojo** que avanza por una arteria con efectos visuales mejorados.
 - **Efectos de partículas**: Estela de movimiento, explosiones de colisión y celebraciones.
 - Esquiva:
   - **Placas de colesterol** (tipo tuberías) con gradientes realistas.
@@ -10,32 +34,7 @@
   - **Vitaminas**: +3 puntos con resplandor dorado.
 - **Dificultad dinámica**: el hueco entre obstáculos se reduce con tu puntuación.
 - **Récord guardado** en el navegador con `localStorage`.
-- **Final divertido**: al chocar aparece un **pixel-doctor** con un diagnóstico gracioso y efectos de partículas.*Artery Dash** es un minijuego estilo *Flappy Bird* con estética **pixel art** mejorada en vista lateral, ambientado dentro de un vaso sanguíneo.  
-Fue diseñado para amenizar la espera en hospitales o consultorios, ofreciendo un toque educativo y divertido sobre el sistema cardiovascular.
-
-**Nueva versión mejorada** con efectos visuales avanzados, sistema de partículas y optimizaciones de rendimiento para una experiencia más fluida e inmersiva.
-
-![Captura del juego](./Screenshot/ChatGPT%20Image%2013%20ago%202025,%2016_11_54.png)ry Dash
-
-**Artery Dash** es un minijuego estilo *Flappy Bird* con estética **pixel art** en vista lateral, ambientado dentro de un vaso sanguíneo.  
-Fue diseñado para amenizar la espera en hospitales o consultorios, ofreciendo un toque educativo y divertido sobre el sistema cardiovascular.
-
-![Captura del juego](./screenshot.png) <!-- Puedes añadir esta imagen si tomas una captura -->
-
----
-
-## Mecánicas de juego
-- Controlas un **glóbulo rojo** que avanza por una arteria.
-- Esquiva:
-  - **Placas de colesterol** (tipo tuberías).
-  - **Glóbulos blancos** (leucocitos).
-  - **Bacterias**.
-- Consigue **bonus**:
-  - **O₂**: +2 puntos.
-  - **Vitaminas**: +3 puntos.
-- **Dificultad dinámica**: el hueco entre obstáculos se reduce con tu puntuación.
-- **Récord guardado** en el navegador con `localStorage`.
-- **Final divertido**: al chocar aparece un **pixel-doctor** con un diagnóstico gracioso.
+- **Final divertido**: al chocar aparece un **pixel-doctor** con un diagnóstico gracioso y efectos de partículas.
 
 ---
 

@@ -137,21 +137,30 @@
 
   <script>
   /*
-   * Artery Dash Enhanced Edition - Educational Flappy Bird-style Game
+   * Artery Dash Enhanced Edition - Juego Educativo del Sistema Circulatorio
    * Copyright (c) 2025 Marco Vinicio (MarcoS9309)
    * 
-   * A pixel art medical-themed game set inside a blood vessel.
-   * Control a red blood cell navigating through arteries while avoiding
-   * cholesterol plaques, white blood cells, and bacteria.
+   * Un juego educativo con estética pixel art ambientado en el interior de un vaso sanguíneo.
+   * Controla un glóbulo rojo navegando por las arterias mientras evitas placas de colesterol,
+   * leucocitos y bacterias, al mismo tiempo que recoges oxígeno y vitaminas.
    * 
-   * Features:
-   * - Advanced particle system
-   * - Optimized rendering with cached gradients
-   * - Smooth animations and visual effects
-   * - Educational medical content
+   * PROPÓSITO EDUCATIVO:
+   * - Enseña anatomía básica del sistema circulatorio
+   * - Visualiza componentes sanguíneos y su función
+   * - Representa patologías cardiovasculares comunes
+   * - Promueve la importancia de la salud cardiovascular
    * 
-   * License: MIT (see LICENSE file)
-   * Repository: https://github.com/MarcoS9309/Arltery_dash-demo
+   * CARACTERÍSTICAS TÉCNICAS:
+   * - Sistema avanzado de partículas para efectos visuales
+   * - Renderizado optimizado con gradientes cacheados
+   * - Animaciones fluidas y efectos de profundidad
+   * - Monitoreo de rendimiento y ajuste automático de calidad
+   * 
+   * Diseñado para ser usado en entornos médicos como hospitales y consultorios,
+   * ofreciendo entretenimiento educativo durante las esperas.
+   * 
+   * Licencia: MIT (ver archivo LICENSE)
+   * Repositorio: https://github.com/MarcoS9309/Arltery_dash-demo
    */
   (function(){
     const cvs = document.getElementById('game');
@@ -636,8 +645,8 @@
       overlay.style.display = 'block';
       overlay.innerHTML = `
         <h2>Artery Dash</h2>
-        <p>Controla un <strong>glóbulo rojo</strong> por la arteria esquivando placas, leucocitos, bacterias y coágulos.<br>
-        Toma <strong>oxígeno</strong> y <strong>vitaminas</strong> para sumar puntos extra.</p>
+        <p>Controla un <strong>glóbulo rojo</strong> por la arteria esquivando placas de colesterol, leucocitos y bacterias.<br>
+        Toma <strong>oxígeno</strong> y <strong>vitaminas</strong> para sumar puntos extra y mantener tu salud cardiovascular.</p>
         <p><span class="kbd">␣</span> / click / toque: <strong>Saltar</strong> · <span class="kbd">P</span>: Pausa · <span class="kbd">M</span>: Sonido</p>
         <button id="start">Jugar</button>
       `;
