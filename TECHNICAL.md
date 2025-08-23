@@ -1,5 +1,22 @@
 # Artery Dash - Documentación Técnica
 
+## 🩺 Propósito Educativo del Juego
+
+**Artery Dash** fue diseñado como una herramienta educativa interactiva para enseñar conceptos básicos del sistema circulatorio de manera divertida y memorable. 
+
+### 🎯 Objetivos Pedagógicos
+- **Visualización anatómica**: Representación del interior de una arteria con paredes pulsátiles realistas
+- **Componentes sanguíneos**: Identificación de glóbulos rojos, leucocitos y su función en el organismo  
+- **Patologías comunes**: Comprensión visual de placas de colesterol y su impacto en la circulación
+- **Promoción de salud**: Importancia del oxígeno y las vitaminas para la salud cardiovascular
+
+### 🏥 Aplicaciones en Entornos Médicos
+- **Salas de espera**: Entretenimiento educativo durante las consultas
+- **Educación sanitaria**: Herramienta visual para explicar conceptos médicos
+- **Concienciación**: Promoción de hábitos saludables de forma lúdica
+
+---
+
 ## 🏗️ Arquitectura del Código
 
 ### Estructura Principal
