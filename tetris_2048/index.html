@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris 2048</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Tetris-2048</h1>
+        <div id="main-area">
+            <canvas id="game-canvas" width="300" height="600"></canvas>
+            <div id="side-panel">
+                <div class="info-box">
+                    <h2>Puntuación</h2>
+                    <p id="score">0</p>
+                </div>
+                <div class="info-box">
+                    <h2>Siguiente</h2>
+                    <canvas id="next-canvas" width="120" height="120"></canvas>
+                </div>
+                <div id="game-over-message" class="hidden">
+                    <h2>Game Over</h2>
+                    <button id="restart-button">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+        <p class="instructions">Flechas: Mover | Arriba: Rotar | Abajo: Acelerar</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
