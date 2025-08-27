@@ -101,6 +101,26 @@ h1 {
     display: none;
 }
 
+.back-button {
+    margin-top: 20px;
+}
+
+.back-button a {
+    color: #33ff33;
+    text-decoration: none;
+    font-size: 0.7rem;
+    padding: 8px 16px;
+    border: 2px solid #33ff33;
+    border-radius: 5px;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.back-button a:hover {
+    background: #33ff33;
+    color: #000;
+}
+
 #restart-button {
     font-family: 'Press Start 2P', monospace;
     font-size: 1rem;

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong Retro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div class="header">
+            <h1>PONG RETRO</h1>
+            <div class="score">
+                <span id="player-score">0</span>
+                <span class="separator">:</span>
+                <span id="computer-score">0</span>
+            </div>
+        </div>
+        
+        <canvas id="game-canvas" width="800" height="400"></canvas>
+        
+        <div id="game-over" class="hidden">
+            <h2 id="winner-text">¡GANASTE!</h2>
+            <button id="restart-btn">JUGAR DE NUEVO</button>
+        </div>
+        
+        <div class="controls">
+            <p>⬆️⬇️ Flechas: Mover paleta | ESPACIO: Pausar</p>
+            <p>🎯 Primer jugador en llegar a 10 puntos gana</p>
+        </div>
+        
+        <div class="back-button">
+            <a href="../arcade.html">🏠 VOLVER AL ARCADE</a>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
