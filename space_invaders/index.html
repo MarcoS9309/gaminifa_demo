@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Invaders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div class="header">
+            <h1>SPACE INVADERS</h1>
+            <div class="game-info">
+                <div class="score-info">
+                    <span>PUNTUACIÓN:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="lives-info">
+                    <span>VIDAS:</span>
+                    <span id="lives">3</span>
+                </div>
+                <div class="level-info">
+                    <span>NIVEL:</span>
+                    <span id="level">1</span>
+                </div>
+            </div>
+        </div>
+        
+        <canvas id="game-canvas" width="800" height="600"></canvas>
+        
+        <div id="game-over" class="hidden">
+            <h2 id="game-over-text">GAME OVER</h2>
+            <p id="final-score">Puntuación Final: 0</p>
+            <button id="restart-btn">JUGAR DE NUEVO</button>
+        </div>
+        
+        <div class="controls">
+            <p>⬅️➡️ Flechas: Mover nave | ESPACIO: Disparar | P: Pausar</p>
+            <p>👾 Defiende la Tierra de la invasión alienígena</p>
+        </div>
+        
+        <div class="back-button">
+            <a href="../arcade.html">🏠 VOLVER AL ARCADE</a>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

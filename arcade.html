@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Arcade - Colección de Juegos Clásicos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a, #1a0515, #2a1020);
+            color: #33ff33;
+            font-family: 'Press Start 2P', monospace;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #33ff33, 0 0 40px #33ff33, 0 0 60px #33ff33;
+        }
+
+        .header p {
+            font-size: clamp(0.8rem, 2vw, 1.2rem);
+            color: #66ff66;
+            margin-bottom: 20px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        .game-card {
+            background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+            border: 3px solid #33ff33;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(51, 255, 51, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
+        }
+
+        .game-card:hover::before {
+            opacity: 1;
+            animation: shine 1.5s ease-in-out;
+        }
+
+        .game-card:hover {
+            border-color: #66ff66;
+            box-shadow: 
+                0 0 30px rgba(51, 255, 51, 0.5),
+                inset 0 0 30px rgba(51, 255, 51, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .game-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #33ff33;
+        }
+
+        .game-description {
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: #99ff99;
+            margin-bottom: 20px;
+            min-height: 60px;
+        }
+
+        .play-button {
+            background: linear-gradient(145deg, #33ff33, #228822);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .play-button:hover {
+            background: linear-gradient(145deg, #66ff66, #33cc33);
+            box-shadow: 0 0 20px rgba(51, 255, 51, 0.6);
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            color: #666;
+            font-size: 0.6rem;
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #33ff33; }
+            to { text-shadow: 0 0 30px #33ff33, 0 0 40px #33ff33; }
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .game-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🕹️ RETRO ARCADE</h1>
+        <p>Colección de juegos clásicos con estética retro</p>
+    </div>
+
+    <div class="games-grid">
+        <div class="game-card">
+            <div class="game-icon">🩸</div>
+            <h2 class="game-title">Artery Dash</h2>
+            <p class="game-description">Controla un glóbulo rojo por la arteria esquivando obstáculos y recolectando nutrientes.</p>
+            <a href="index.html" class="play-button">JUGAR</a>
+        </div>
+
+        <div class="game-card">
+            <div class="game-icon">🐍</div>
+            <h2 class="game-title">Gusanito</h2>
+            <p class="game-description">La clásica serpiente con estilo pixel art. Come manzanas y crece sin chocarte.</p>
+            <a href="gusanito/index.html" class="play-button">JUGAR</a>
+        </div>
+
+        <div class="game-card">
+            <div class="game-icon">🔢</div>
+            <h2 class="game-title">2048 Vintage</h2>
+            <p class="game-description">El adictivo juego de números con un look de monitor antiguo. Combina hasta 2048.</p>
+            <a href="2048_vintage/index.html" class="play-button">JUGAR</a>
+        </div>
+
+        <div class="game-card">
+            <div class="game-icon">🧩</div>
+            <h2 class="game-title">Tetris-2048</h2>
+            <p class="game-description">Un híbrido único donde los bloques se fusionan en lugar de desaparecer.</p>
+            <a href="tetris_2048/index.html" class="play-button">JUGAR</a>
+        </div>
+
+        <div class="game-card">
+            <div class="game-icon">🏓</div>
+            <h2 class="game-title">Pong Retro</h2>
+            <p class="game-description">El primer videojuego de la historia. Controla tu paleta y vence a la IA.</p>
+            <a href="pong/index.html" class="play-button">JUGAR</a>
+        </div>
+
+        <div class="game-card">
+            <div class="game-icon">👾</div>
+            <h2 class="game-title">Space Invaders</h2>
+            <p class="game-description">Defiende la Tierra de la invasión alienígena en este clásico shooter espacial.</p>
+            <a href="space_invaders/index.html" class="play-button">JUGAR</a>
+        </div>
+
+        <div class="game-card">
+            <div class="game-icon">🧱</div>
+            <h2 class="game-title">Breakout</h2>
+            <p class="game-description">Destruye todos los bloques rebotando la pelota con tu paleta.</p>
+            <a href="breakout/index.html" class="play-button">JUGAR</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>🎮 Retro Arcade Collection - Creado con HTML5, CSS3 y JavaScript</p>
+        <p>© 2025 - Proyecto educativo con estética retro</p>
+    </div>
+</body>
+</html>
